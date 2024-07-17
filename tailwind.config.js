@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'primary-color': "var(--primary-color)",
         'secondary-color': "var(--secondary-color)",
+        "white-color":"var(--white-color)"
       },
     },
   },

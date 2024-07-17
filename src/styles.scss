@@ -7,7 +7,8 @@
 @layer base {
     :root {
       --primary-color: #bdee63;
-      --secondary-color: #bdee63;
+      --secondary-color: #37B7C3;
+      --white-color:#F5F7F8
     }
   }
 
@@ -38,7 +39,7 @@
 
 .ngx-pagination a,
 .ngx-pagination button {
-  color: white !important;
+  color: black !important;
 }
 .ngx-pagination a:hover {
   background: transparent !important;

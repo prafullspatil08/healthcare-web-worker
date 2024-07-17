@@ -17,6 +17,7 @@ export class PatientsListComponent implements OnInit {
   noRecordsFound: boolean = false;
   isBusy: boolean = false;
   webWorkerSeacrh: boolean = false;
+  isListView = false;
   private worker!: Worker
 
   constructor(private patientDataService: PatientDataService) {}
@@ -99,5 +100,7 @@ export class PatientsListComponent implements OnInit {
     window.alert(message);
   }
 
-
+  toggle(){
+    this.isListView = !this.isListView
+  }
 }
