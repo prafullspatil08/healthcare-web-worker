@@ -47,3 +47,6 @@
 .ngx-pagination .current {
   background: var(--primary-color) !important;
 }
+.ngx-pagination li:hover {
+  background: var(--primary-color) !important;
+}

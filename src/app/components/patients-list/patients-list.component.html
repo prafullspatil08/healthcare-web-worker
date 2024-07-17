@@ -68,20 +68,55 @@
       </tbody>
     </table>
   </div> -->
-
+<div class="flex justify-center pt-10 pb-10">
+  <label
+    for="themeSwitcherOne"
+    class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center rounded-md bg-white dark:bg-dark-2 p-1"
+  >
+    <input
+      type="checkbox"
+      name="themeSwitcherOne"
+      id="themeSwitcherOne"
+      class="sr-only"
+    />
+    <span
+      class="light text-primary bg-gray  dark:bg-dark-3 flex items-center space-x-[6px] rounded py-2 px-[18px] text-sm font-medium"
+    >
+    <svg class="size-[18px]" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.5 10.32C8.433 10.32 10 8.753 10 6.82001C10 4.88701 8.433 3.32001 6.5 3.32001C4.567 3.32001 3 4.88701 3 6.82001C3 8.753 4.567 10.32 6.5 10.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17.5 10.32C19.433 10.32 21 8.753 21 6.82001C21 4.88701 19.433 3.32001 17.5 3.32001C15.567 3.32001 14 4.88701 14 6.82001C14 8.753 15.567 10.32 17.5 10.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21.32C8.433 21.32 10 19.753 10 17.82C10 15.887 8.433 14.32 6.5 14.32C4.567 14.32 3 15.887 3 17.82C3 19.753 4.567 21.32 6.5 21.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17.5 21.32C19.433 21.32 21 19.753 21 17.82C21 15.887 19.433 14.32 17.5 14.32C15.567 14.32 14 15.887 14 17.82C14 19.753 15.567 21.32 17.5 21.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Grid View
+    </span>
+    <span
+      class="dark text-body-color flex items-center space-x-[6px] rounded py-2 px-[18px] text-sm font-medium"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+    </svg>
+    
+      List View
+    </span>
+  </label>
+</div>
 <!-- ====== Table Section Start -->
-<section class="bg-white py-20 h-full dark:bg-dark">
-  <div class="px-4 mx-auto lg:container">
+<section class="bg-white pb-20 h-full dark:bg-dark">
+  <div class="px-4 mx-auto container">
     <!-- search bar -->
     <div
       class="mb-8 items-center justify-between rounded-lg bg-[#F8F9FD] dark:bg-dark-2 py-4 px-5 md:flex"
     >
-      <div class="mb-4 w-full md:mb-0 md:max-w-[220px] lg:max-w-[415px]">
-        <div class="relative">
+      <div
+        class="mb-4 w-full md:mb-0 flex items-center justify-self-auto gap-2"
+      >
+        <div class="relative w-[500px]">
           <input
             type="text"
+            [(ngModel)]="searchTerm"
             placeholder="Search here..."
-            class="h-[50px] w-full rounded-lg border border-stroke dark:border-dark-3 dark:text-dark-6 bg-white dark:bg-dark pr-6 pl-14 text-base text-body-color outline-none focus:border-primary"
+            class="h-[50px] w-full rounded-lg border border-stroke dark:border-dark-3 dark:text-dark-6 bg-white dark:bg-dark pr-6 pl-14 text-base text-body-color outline-none focus:border-primary-color"
           />
           <span class="absolute -translate-y-1/2 left-6 top-1/2">
             <svg
@@ -106,64 +141,105 @@
             </svg>
           </span>
         </div>
-      </div>
-      <div class="w-full">
-        <div
-          class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 md:justify-end"
+        <button
+          (click)="onSearch()"
+          class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white px-5"
         >
-          <button
-            class="flex h-[50px] items-center justify-center rounded-md border border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 dark:bg-dark bg-white hover:text-primary hover:border-primary px-5"
-          >
-            <span class="mr-2">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15.7499 2.9812H14.2874V2.36245C14.2874 2.02495 14.0062 1.71558 13.6405 1.71558C13.2749 1.71558 12.9937 1.99683 12.9937 2.36245V2.9812H4.97803V2.36245C4.97803 2.02495 4.69678 1.71558 4.33115 1.71558C3.96553 1.71558 3.68428 1.99683 3.68428 2.36245V2.9812H2.2499C1.29365 2.9812 0.478027 3.7687 0.478027 4.75308V14.5406C0.478027 15.4968 1.26553 16.3125 2.2499 16.3125H15.7499C16.7062 16.3125 17.5218 15.525 17.5218 14.5406V4.72495C17.5218 3.7687 16.7062 2.9812 15.7499 2.9812ZM1.77178 8.21245H4.1624V10.9968H1.77178V8.21245ZM5.42803 8.21245H8.38115V10.9968H5.42803V8.21245ZM8.38115 12.2625V15.0187H5.42803V12.2625H8.38115ZM9.64678 12.2625H12.5999V15.0187H9.64678V12.2625ZM9.64678 10.9968V8.21245H12.5999V10.9968H9.64678ZM13.8374 8.21245H16.228V10.9968H13.8374V8.21245ZM2.2499 4.24683H3.7124V4.83745C3.7124 5.17495 3.99365 5.48433 4.35928 5.48433C4.7249 5.48433 5.00615 5.20308 5.00615 4.83745V4.24683H13.0499V4.83745C13.0499 5.17495 13.3312 5.48433 13.6968 5.48433C14.0624 5.48433 14.3437 5.20308 14.3437 4.83745V4.24683H15.7499C16.0312 4.24683 16.2562 4.47183 16.2562 4.75308V6.94683H1.77178V4.75308C1.77178 4.47183 1.96865 4.24683 2.2499 4.24683ZM1.77178 14.5125V12.2343H4.1624V14.9906H2.2499C1.96865 15.0187 1.77178 14.7937 1.77178 14.5125ZM15.7499 15.0187H13.8374V12.2625H16.228V14.5406C16.2562 14.7937 16.0312 15.0187 15.7499 15.0187Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            Mar 28, 2022 - Apr 29, 2022
-          </button>
-          <button
-            class="flex h-[50px] items-center justify-center hover:border-primary rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary bg-white px-5"
-          >
-            <span class="mr-2">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.36874 17.4937C7.19999 17.4937 7.03124 17.4374 6.86249 17.353C6.58124 17.1843 6.44062 16.903 6.44062 16.5937V7.6499L1.51874 1.94053C1.32187 1.65928 1.26562 1.29365 1.40624 0.984277C1.54687 0.674902 1.88437 0.478027 2.24999 0.478027H15.75C16.1156 0.478027 16.4531 0.703027 16.5937 1.04053C16.7344 1.37803 16.6781 1.71553 16.425 1.99678L11.5875 7.62178V14.1749C11.5875 14.3437 11.5312 14.5968 11.2781 14.8499L11.2219 14.9062L7.84687 17.4093C7.70624 17.4655 7.53749 17.4937 7.36874 17.4937ZM7.50937 6.91865C7.64999 7.0874 7.73437 7.34053 7.73437 7.50928V15.9187L10.35 13.978V7.50928C10.35 7.36865 10.35 7.11553 10.575 6.89053L14.9625 1.77178H3.03749L7.50937 6.91865ZM6.52499 7.73428L6.55312 7.7624L6.52499 7.73428Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            Filter
-          </button>
-        </div>
+          <span class="mr-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-[18px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </span>
+          Search
+        </button>
+        <button
+          (click)="filterArrayWithWorker()"
+          class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white px-5"
+        >
+          <span class="mr-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-[18px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </span>
+          Search (With Web Worker)
+        </button>
+        <button
+          (click)="alert('Button Clicked')"
+          class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white px-5"
+        >
+          <span class="mr-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-[18px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </span>
+          Another Action
+        </button>
       </div>
+      <button
+        class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white px-5"
+      >
+        <span class="mr-2">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.36874 17.4937C7.19999 17.4937 7.03124 17.4374 6.86249 17.353C6.58124 17.1843 6.44062 16.903 6.44062 16.5937V7.6499L1.51874 1.94053C1.32187 1.65928 1.26562 1.29365 1.40624 0.984277C1.54687 0.674902 1.88437 0.478027 2.24999 0.478027H15.75C16.1156 0.478027 16.4531 0.703027 16.5937 1.04053C16.7344 1.37803 16.6781 1.71553 16.425 1.99678L11.5875 7.62178V14.1749C11.5875 14.3437 11.5312 14.5968 11.2781 14.8499L11.2219 14.9062L7.84687 17.4093C7.70624 17.4655 7.53749 17.4937 7.36874 17.4937ZM7.50937 6.91865C7.64999 7.0874 7.73437 7.34053 7.73437 7.50928V15.9187L10.35 13.978V7.50928C10.35 7.36865 10.35 7.11553 10.575 6.89053L14.9625 1.77178H3.03749L7.50937 6.91865ZM6.52499 7.73428L6.55312 7.7624L6.52499 7.73428Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Filter
+      </button>
     </div>
 
-    <div class="my-8 text-center ">
+    <div class="my-8 text-center">
       <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
 
     <div
-      class="bg-white border rounded-lg dark:bg-dark-2 dark:border-dark-3 border-stroke"
+      class="bg-white border-2 rounded-lg dark:bg-dark-2 dark:border-dark-3 border-stroke"
     >
       <div class="max-w-full overflow-x-auto">
         <table class="w-full rounded-lg table-auto">
           <thead>
-            <tr class="border-b border-stroke dark:border-dark-3">
+            <tr class="border-b-2 border-stroke dark:border-dark-3">
               <th class="min-w-[200px] py-5 pr-4 pl-9">
                 <p
                   class="text-base text-center font-medium text-dark dark:text-white"
@@ -208,7 +284,7 @@
                   | paginate : { itemsPerPage: pageSize, currentPage: page };
                 let i = index
               "
-              class="border-b border-stroke dark:border-dark-3"
+              class="border-b-2 border-stroke dark:border-dark-3"
             >
               <td class="py-6 pr-4 pl-9">
                 <h5
@@ -268,6 +344,15 @@
                   Confirm Order
                 </button>
               </td> -->
+            </tr>
+            <tr *ngIf="noRecordsFound">
+              <td colspan="5" class="text-center py-6">
+                <h5
+                  class="text-base text-center font-medium text-body-color dark:text-dark-6"
+                >
+                  No records found
+                </h5>
+              </td>
             </tr>
           </tbody>
         </table>
