@@ -17,7 +17,7 @@ export class PatientsListComponent implements OnInit {
   noRecordsFound: boolean = false;
   isBusy: boolean = false;
   webWorkerSeacrh: boolean = false;
-  isListView = false;
+  isListView = true;
   private worker!: Worker
 
   constructor(private patientDataService: PatientDataService) {}
