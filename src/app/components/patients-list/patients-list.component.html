@@ -381,7 +381,7 @@
                 <h5
                   class="text-base text-center font-medium text-body-color dark:text-dark-6"
                 >
-                  {{ item?.insurance_details.expiry_date }}
+                  {{ item?.insurance_details.expiry_date | date:'mediumDate'}}
                 </h5>
               </td>
             </tr>
@@ -464,7 +464,7 @@
                   </h3>
                   <p class="text-xs text-body-color dark:text-dark-6">
                     Insurance Expiry date:
-                    {{ item?.insurance_details.expiry_date }}
+                    {{ item?.insurance_details.expiry_date | date:'mediumDate' }}
                   </p>
                 </div>
                 <div class="mx-auto w-full max-w-[120px] sm:max-w-[140px]">
