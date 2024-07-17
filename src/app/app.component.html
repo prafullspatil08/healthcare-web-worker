@@ -1,12 +1,8 @@
-<header class="d-flex justify-content-between align-items-center p-3 bg-light">
-  <div>
-    <h4>Welcome</h4>
-    <p class="mb-0">John Doe</p>
-  </div>
-  <div class="avatar">
-    <i class="fas fa-user-circle fa-3x"></i>
-  </div>
-</header>
+<main class="h-full bg-white dark:bg-dark-2">
+  <!-- ====== Navbar Section Start -->
+  <app-navbar></app-navbar>
+  <!-- ====== Navbar Section End -->
 
-<router-outlet></router-outlet>
-<ng-http-loader [backgroundColor]="'#485cc7'"></ng-http-loader>
+  <router-outlet></router-outlet>
+  <!-- <ng-http-loader [backgroundColor]="'#485cc7'"></ng-http-loader> -->
+</main>

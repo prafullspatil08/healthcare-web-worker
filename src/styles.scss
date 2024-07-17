@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+      --primary-color: #bdee63;
+      --secondary-color: #bdee63;
+    }
+  }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  @apply bg-gray-2;
+  @apply dark:bg-dark-8;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-5;
+  @apply dark:bg-dark-5;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-5;
+  @apply dark:bg-dark-5;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+  color: white !important;
+}
+.ngx-pagination a:hover {
+  background: transparent !important;
+}
+
+.ngx-pagination .current {
+  background: var(--primary-color) !important;
+}
