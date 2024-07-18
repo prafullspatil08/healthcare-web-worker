@@ -96,10 +96,6 @@ export class PatientsListComponent implements OnInit {
     // }
   }
 
-  alert(message: string) {
-    window.alert(message);
-  }
-
   toggle(){
     this.isListView = !this.isListView
   }
