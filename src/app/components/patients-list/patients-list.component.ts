@@ -34,26 +34,16 @@ export class PatientsListComponent implements OnInit {
   }
 
   onSearch() {
-    // if (this.searchTerm) {
-    //   this.filteredData = this.originalData.filter((item: any) => {
-    //     return item.personal_details.first_name.toLowerCase().includes(this.searchTerm.toLowerCase());
-    // });
-    // this.noRecordsFound = this.filteredData.length === 0;
-    // } else {
-    //   this.filteredData = [...this.originalData];
-    //   this.noRecordsFound = false;
-    // }
     this.isBusy = true;
     setTimeout(() => {
       if (this.searchTerm) {
         const term = this.searchTerm.toLowerCase();
-        const start = performance.now();
-        while (performance.now() - start < 2000) {
-          // Blocking the main thread for 2 seconds
+        const startTime = performance.now();
+        while (performance.now() - startTime < 2000) {
+          this.filteredData = this.originalData.filter((item: any) => this.matchesCriteria(item, term));
+          this.noRecordsFound = this.filteredData.length === 0;
           this.isBusy = false;
         }
-        this.filteredData = this.originalData.filter((item: any) => this.containsTerm(item, term));
-        this.noRecordsFound = this.filteredData.length === 0;
     } else {
       this.filteredData = [...this.originalData];
       this.noRecordsFound = false;
@@ -63,37 +53,38 @@ export class PatientsListComponent implements OnInit {
 
   }
 
-  containsTerm(item: any, term: string): boolean {
-    // If the item is an object, check its values
-    if (item && typeof item === 'object') {
-      return Object.values(item).some(value => this.containsTerm(value, term));
-    }
-    // If the item is a string, check if it includes the search term
-    if (typeof item === 'string') {
-      return item.toLowerCase().includes(term);
-    }
-    // If the item is a number, check if its string representation includes the search term
-    if (typeof item === 'number') {
-      return item.toString().includes(term);
-    }
-    return false;
+  matchesCriteria(item: any, term: string): boolean {
+    const personalDetails = item.personal_details;
+    const insuranceDetails = item.insurance_details;
+    const medicalHistory = item.medical_history;
+    const ongoingTreatment = item.ongoing_treatment;
+
+    return (
+      (personalDetails.first_name && personalDetails.first_name.toLowerCase().includes(term)) ||
+      (personalDetails.last_name && personalDetails.last_name.toLowerCase().includes(term)) ||
+      (insuranceDetails.provider && insuranceDetails.provider.toLowerCase().includes(term)) ||
+      (ongoingTreatment.some((t: any) => t.treatment_name.toLowerCase().includes(term))) ||
+      (medicalHistory.some((m: any) => m.condition.toLowerCase().includes(term))) ||
+      (insuranceDetails.expiry_date && new Date(insuranceDetails.expiry_date).toISOString().toLowerCase().includes(term))
+    );
   }
 
 
   filterArrayWithWorker() {
     this.isWebWorkerSearch = true;
-    // if (typeof Worker !== 'undefined') {
+    if (typeof Worker !== 'undefined') {
       this.worker = new Worker(new URL('../../filter.worker.ts', import.meta.url));
       this.worker.onmessage = ({ data }) => {
         this.filteredData = data;
+        this.noRecordsFound = this.filteredData.length === 0;
         this.isWebWorkerSearch = false;
       };
       const term = this.searchTerm.toLowerCase();
       this.worker.postMessage({ array: this.originalData, term: term });
-    // } else {
-    //   // Web Workers are not supported in this environment
-    //   this.onSearch();
-    // }
+    } else {
+      // Web Workers are not supported in this environment
+      this.onSearch();
+    }
   }
 
   toggle(){
