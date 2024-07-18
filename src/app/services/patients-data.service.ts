@@ -9,6 +9,6 @@ export class PatientDataService {
   constructor(private http: HttpClient) { }
 
   getLocalData(){
-    return this.http.get('../../assets/data/patient_records.json');
+    return this.http.get('http://localhost:3000/patients_records');
   }
 }
