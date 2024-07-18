@@ -16,7 +16,7 @@ export class PatientsListComponent implements OnInit {
   originalData: any = [];
   noRecordsFound: boolean = false;
   isBusy: boolean = false;
-  webWorkerSeacrh: boolean = false;
+  isWebWorkerSearch: boolean = false;
   isListView = true;
   private worker!: Worker
 
@@ -81,12 +81,12 @@ export class PatientsListComponent implements OnInit {
 
 
   filterArrayWithWorker() {
-    this.webWorkerSeacrh = true;
+    this.isWebWorkerSearch = true;
     // if (typeof Worker !== 'undefined') {
       this.worker = new Worker(new URL('../../filter.worker.ts', import.meta.url));
       this.worker.onmessage = ({ data }) => {
         this.filteredData = data;
-        this.webWorkerSeacrh = false;
+        this.isWebWorkerSearch = false;
       };
       const term = this.searchTerm.toLowerCase();
       this.worker.postMessage({ array: this.originalData, term: term });
