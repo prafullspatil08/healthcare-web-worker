@@ -7,16 +7,11 @@ import { PatientDataService } from '../../services/patients-data.service';
   styleUrls: ['./patients-list.component.scss']
 })
 export class PatientsListComponent implements OnInit {
-
-
   filteredData: any = [];
   searchTerm = '';
   page: number = 1;
   pageSize: number = 20;
   originalData: any = [];
-  noRecordsFound: boolean = false;
-  isBusy: boolean = false;
-  isWebWorkerSearch: boolean = false;
   isListView = true;
   private worker!: Worker
 
@@ -34,23 +29,15 @@ export class PatientsListComponent implements OnInit {
   }
 
   onSearch() {
-    this.isBusy = true;
-    setTimeout(() => {
       if (this.searchTerm) {
         const term = this.searchTerm.toLowerCase();
         const startTime = performance.now();
         while (performance.now() - startTime < 2000) {
           this.filteredData = this.originalData.filter((item: any) => this.matchesCriteria(item, term));
-          this.noRecordsFound = this.filteredData.length === 0;
-          this.isBusy = false;
         }
     } else {
       this.filteredData = [...this.originalData];
-      this.noRecordsFound = false;
-      this.isBusy = false;
     }
-    }, 1000);
-
   }
 
   matchesCriteria(item: any, term: string): boolean {
@@ -71,13 +58,10 @@ export class PatientsListComponent implements OnInit {
 
 
   filterArrayWithWorker() {
-    this.isWebWorkerSearch = true;
     if (typeof Worker !== 'undefined') {
       this.worker = new Worker(new URL('../../filter.worker.ts', import.meta.url));
       this.worker.onmessage = ({ data }) => {
         this.filteredData = data;
-        this.noRecordsFound = this.filteredData.length === 0;
-        this.isWebWorkerSearch = false;
       };
       const term = this.searchTerm.toLowerCase();
       this.worker.postMessage({ array: this.originalData, term: term });
