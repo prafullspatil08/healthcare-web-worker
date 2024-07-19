@@ -1,4 +1,7 @@
-<main class="h-screen overflow-auto bg-white-color dark:bg-dark">
+<main
+  [ngClass]="{ dark: this.themeService.isDark }"
+  class="h-screen overflow-auto bg-white-color dark:bg-dark"
+>
   <!-- ====== Navbar Section Start -->
   <app-navbar></app-navbar>
   <!-- ====== Navbar Section End -->

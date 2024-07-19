@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientDataService } from '../../services/patients-data.service';
 import { matchesCriteria } from '../../core/utility/utility';
+import { ThemeService } from '../../core/services/theme-service.service';
 
 @Component({
   selector: 'app-patients-list',
@@ -16,7 +17,7 @@ export class PatientsListComponent implements OnInit {
   isListView = true;
   private recordFilterWorker!: Worker;
 
-  constructor(private patientDataService: PatientDataService) {}
+  constructor(private patientDataService: PatientDataService, public themeService: ThemeService) {}
 
   ngOnInit() {
     this.getClientList();
@@ -62,8 +63,8 @@ export class PatientsListComponent implements OnInit {
     }
   }
 
-  toggle() {
-    this.isListView = !this.isListView;
+  toggleTheme() {
+    this.themeService.theme = !this.themeService.isDark ? 'dark' : 'light';
   }
 
   clearSearch() {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './core/services/theme-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'healthcare-web-worker';
+  constructor(public themeService: ThemeService) {}
+
 }
