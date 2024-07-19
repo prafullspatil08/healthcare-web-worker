@@ -69,8 +69,11 @@
     </table>
   </div> -->
 <!-- ====== Table Section Start -->
-<section class="bg-white-color py-20 h-full dark:bg-dark">
+<section class="bg-white-color py-8 h-full dark:bg-dark">
   <div class="px-10 mx-auto">
+    <div class="pb-8">
+      <h6 class="text-body-color dark:text-dark-6 text-center text-2xl uppercase font-bold">Patients Records</h6>
+    </div>
     <!-- search bar -->
     <div
       class="mb-8 items-center justify-between dark:border-none border-2 border-x-primary-color rounded-lg bg-white-color dark:bg-dark-2 py-4 px-5 md:flex"
@@ -199,14 +202,14 @@
       </div>
       <div>
         <label
-          for="toggleThree"
+          for="toggleView"
           class="flex items-center cursor-pointer select-none text-dark dark:text-white"
         >
           <div class="relative">
             <input
               type="checkbox"
               [(ngModel)]="isListView"
-              id="toggleThree"
+              id="toggleView"
               class="peer sr-only"
             />
             <div

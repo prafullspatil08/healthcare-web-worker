@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientDataService } from '../../services/patients-data.service';
 import { matchesCriteria } from '../../core/utility/utility';
+import { ThemeService } from '../../core/services/theme-service.service';
 
 @Component({
   selector: 'app-patients-list',
@@ -60,10 +61,6 @@ export class PatientsListComponent implements OnInit {
       // Web Workers are not supported in this environment
       this.onSearch();
     }
-  }
-
-  toggle() {
-    this.isListView = !this.isListView;
   }
 
   clearSearch() {
