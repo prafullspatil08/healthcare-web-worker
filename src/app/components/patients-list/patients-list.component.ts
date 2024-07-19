@@ -65,4 +65,8 @@ export class PatientsListComponent implements OnInit {
   toggle() {
     this.isListView = !this.isListView;
   }
+
+  clearSearch() {
+    this.searchText = '';
+  }
 }
