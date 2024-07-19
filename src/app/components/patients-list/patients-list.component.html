@@ -83,7 +83,7 @@
             type="text"
             [(ngModel)]="searchText"
             placeholder="Search here..."
-            class="h-[50px] w-full rounded-lg border border-stroke dark:border-dark-3 dark:text-dark-6 bg-white-color dark:bg-dark pr-6 pl-14 text-base text-body-color outline-none focus:border-primary-color"
+            class="h-[50px] w-full rounded-lg border border-stroke dark:border-dark-3 dark:text-dark-6 bg-white-color dark:bg-dark pr-12 pl-14 text-base text-body-color outline-none focus:border-primary-color"
           />
           <span class="absolute -translate-y-1/2 left-6 top-1/2">
             <svg
@@ -104,6 +104,23 @@
                 clip-rule="evenodd"
                 d="M11.957 11.958C12.2499 11.6651 12.7247 11.6651 13.0176 11.958L16.2801 15.2205C16.573 15.5133 16.573 15.9882 16.2801 16.2811C15.9872 16.574 15.5124 16.574 15.2195 16.2811L11.957 13.0186C11.6641 12.7257 11.6641 12.2508 11.957 11.958Z"
                 fill="#637381"
+              />
+            </svg>
+          </span>
+          <span (click)="clearSearch()" *ngIf="searchText" class="absolute cursor-pointer -translate-y-1/2 right-3 top-1/2">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 8L8 16M8.00001 8L16 16"
+                stroke="#637381"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               />
             </svg>
           </span>
@@ -176,7 +193,9 @@
 
     <div class="my-8 flex justify-between">
       <div class="w-[90%] text-center">
-        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+        <pagination-controls
+          (pageChange)="currentPage = $event"
+        ></pagination-controls>
       </div>
       <div>
         <label
@@ -306,7 +325,8 @@
             <tr
               *ngFor="
                 let item of filteredPatientRecords
-                  | paginate : { itemsPerPage: pageSize, currentPage: currentPage };
+                  | paginate
+                    : { itemsPerPage: pageSize, currentPage: currentPage };
                 let i = index
               "
               class="border-b-2 border-stroke dark:border-dark-3"
@@ -378,7 +398,8 @@
               <div
                 *ngFor="
                   let item of filteredPatientRecords
-                    | paginate : { itemsPerPage: pageSize, currentPage: currentPage };
+                    | paginate
+                      : { itemsPerPage: pageSize, currentPage: currentPage };
                   let i = index
                 "
                 class="relative col-span-6 flex items-center w-full p-5 mb-10 bg-white-color border-2 border-gray-3 dark:bg-dark-2 dark:border-dark-3"
