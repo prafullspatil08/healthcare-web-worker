@@ -1,7 +1,7 @@
 <!-- <div class="container mt-4">
     <div class="row mb-3 align-items-center">
       <div class="col-md-6">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
       </div>
       <div class="col-md-6">
         <button class="btn btn-primary" (click)="onSearch()">
@@ -47,7 +47,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
+        <tr *ngFor="let item of filteredPatientRecords | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index">
           <td>{{ item?.personal_details.first_name}}</td>
           <td>{{ item.insurance_details?.provider}}</td>
           <td>
@@ -81,7 +81,7 @@
         <div class="relative w-[400px]">
           <input
             type="text"
-            [(ngModel)]="searchTerm"
+            [(ngModel)]="searchText"
             placeholder="Search here..."
             class="h-[50px] w-full rounded-lg border border-stroke dark:border-dark-3 dark:text-dark-6 bg-white-color dark:bg-dark pr-6 pl-14 text-base text-body-color outline-none focus:border-primary-color"
           />
@@ -176,7 +176,7 @@
 
     <div class="my-8 flex justify-between">
       <div class="w-[90%] text-center">
-        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
       </div>
       <div>
         <label
@@ -305,8 +305,8 @@
           <tbody>
             <tr
               *ngFor="
-                let item of filteredData
-                  | paginate : { itemsPerPage: pageSize, currentPage: page };
+                let item of filteredPatientRecords
+                  | paginate : { itemsPerPage: pageSize, currentPage: currentPage };
                 let i = index
               "
               class="border-b-2 border-stroke dark:border-dark-3"
@@ -377,8 +377,8 @@
             <div class="grid grid-cols-12 gap-4">
               <div
                 *ngFor="
-                  let item of filteredData
-                    | paginate : { itemsPerPage: pageSize, currentPage: page };
+                  let item of filteredPatientRecords
+                    | paginate : { itemsPerPage: pageSize, currentPage: currentPage };
                   let i = index
                 "
                 class="relative col-span-6 flex items-center w-full p-5 mb-10 bg-white-color border-2 border-gray-3 dark:bg-dark-2 dark:border-dark-3"
@@ -455,7 +455,7 @@
       </div>
     </div>
 
-    <div class="py-6" *ngIf="filteredData.length === 0">
+    <div class="py-6" *ngIf="filteredPatientRecords.length === 0">
       <h5
         class="text-xl text-center font-medium text-body-color dark:text-dark-6"
       >
