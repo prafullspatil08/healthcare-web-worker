@@ -68,5 +68,6 @@ export class PatientsListComponent implements OnInit {
 
   clearSearch() {
     this.searchText = '';
+    this.getClientList();
   }
 }
