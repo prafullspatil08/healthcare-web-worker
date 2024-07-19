@@ -17,7 +17,7 @@ export class PatientsListComponent implements OnInit {
   isListView = true;
   private recordFilterWorker!: Worker;
 
-  constructor(private patientDataService: PatientDataService, public themeService: ThemeService) {}
+  constructor(private patientDataService: PatientDataService) {}
 
   ngOnInit() {
     this.getClientList();
@@ -61,10 +61,6 @@ export class PatientsListComponent implements OnInit {
       // Web Workers are not supported in this environment
       this.onSearch();
     }
-  }
-
-  toggleTheme() {
-    this.themeService.theme = !this.themeService.isDark ? 'dark' : 'light';
   }
 
   clearSearch() {
