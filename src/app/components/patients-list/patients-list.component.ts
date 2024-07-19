@@ -19,10 +19,10 @@ export class PatientsListComponent implements OnInit {
   constructor(private patientDataService: PatientDataService) {}
 
   ngOnInit() {
-    this.getClientList();
+    this.getPatientsList();
   }
 
-  getClientList() {
+  getPatientsList() {
     this.patientDataService?.getPatientRecords()?.subscribe((res) => {
       this.patientRecords = res;
       this.filteredPatientRecords = [...this.patientRecords];
@@ -68,6 +68,6 @@ export class PatientsListComponent implements OnInit {
 
   clearSearch() {
     this.searchText = '';
-    this.getClientList();
+    this.getPatientsList();
   }
 }
