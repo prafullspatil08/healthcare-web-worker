@@ -2,7 +2,11 @@
 <section class="bg-white-color py-8 pb-72 h-full dark:bg-dark">
   <div class="px-10 mx-auto">
     <div class="pb-8">
-      <h6 class="text-body-color dark:text-dark-6 text-center text-2xl uppercase font-bold">Patients Records</h6>
+      <h6
+        class="text-body-color dark:text-dark-6 text-center text-2xl uppercase font-bold"
+      >
+        Patients Records
+      </h6>
     </div>
     <!-- search bar -->
     <div
@@ -16,7 +20,7 @@
             type="text"
             [(ngModel)]="searchText"
             placeholder="Search here..."
-            class="h-[50px] w-full rounded-lg border border-stroke dark:border-dark-3 dark:text-dark-6 bg-white-color dark:bg-dark pr-12 pl-14 text-base text-body-color outline-none focus:border-primary-color"
+            class="h-[50px] w-full rounded-lg border-2 border-stroke dark:border-dark-3 dark:text-dark-6 bg-white-color dark:bg-dark pr-12 pl-14 text-base text-body-color outline-none focus:border-primary-color"
           />
           <span class="absolute -translate-y-1/2 left-6 top-1/2">
             <svg
@@ -40,7 +44,11 @@
               />
             </svg>
           </span>
-          <span (click)="clearSearch()" *ngIf="searchText" class="absolute cursor-pointer -translate-y-1/2 right-3 top-1/2">
+          <span
+            (click)="clearSearch()"
+            *ngIf="searchText"
+            class="absolute cursor-pointer -translate-y-1/2 right-3 top-1/2"
+          >
             <svg
               width="30"
               height="30"
@@ -60,7 +68,7 @@
         </div>
         <button
           (click)="onSearch()"
-          class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white-color px-5"
+          class="flex h-[50px] items-center bg-primary-color text-white justify-center rounded-md px-5"
         >
           <span class="mr-2">
             <svg
@@ -82,7 +90,7 @@
         </button>
         <button
           (click)="filterArrayWithWorker()"
-          class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white-color px-5"
+          class="flex h-[50px] items-center justify-center rounded-md bg-primary-color text-white px-5"
         >
           <span class="mr-2">
             <svg
@@ -104,7 +112,7 @@
         </button>
       </div>
       <button
-        class="flex h-[50px] items-center justify-center hover:border-primary-color rounded-md border border-stroke dark:border-dark-3 dark:bg-dark text-body-color dark:text-dark-6 hover:text-primary-color bg-white-color px-5"
+        class="flex h-[50px] items-center justify-center rounded-md bg-primary-color text-white px-5"
       >
         <span class="mr-2">
           <svg
@@ -146,9 +154,9 @@
               class="block h-8 rounded-full bg-gray-3 dark:bg-dark-2 w-14"
             ></div>
             <div
-              class="absolute flex items-center justify-center w-6 h-6 transition bg-primary-color rounded-full dot dark:bg-dark-5 left-1 top-1 peer-checked:translate-x-full"
+              class="absolute flex items-center justify-center w-6 h-6 transition bg-primary-color rounded-full dot  left-1 top-1 peer-checked:translate-x-full"
             >
-              <span class="text-body-color dark:text-light">
+              <span class="text-light">
                 <ng-container *ngIf="!isListView">
                   <svg
                     class="size-[16px]"
@@ -401,7 +409,6 @@
                     {{ item?.insurance_details.expiry_date }}
                   </p>
                 </div>
-                
               </div>
             </div>
           </div>
