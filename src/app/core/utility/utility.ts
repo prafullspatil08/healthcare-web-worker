@@ -1,26 +1,29 @@
 export function matchesCriteria(item: any, text: any): boolean {
-  let searchText = text?.trim()?.toLowerCase();
-  let personalDetails = item?.personal_details;
-  let insuranceDetails = item?.insurance_details;
-  let medicalHistory = item?.medical_history;
-  let ongoingTreatment = item?.ongoing_treatment;
+  const searchText = text?.trim()?.toLowerCase();
+
+  if (!searchText) return false;
+
+  const {
+    personal_details,
+    insurance_details,
+    medical_history,
+    ongoing_treatment,
+  } = item;
+
   return (
-    (personalDetails?.first_name &&
-      personalDetails?.first_name?.toLowerCase()?.includes(searchText)) ||
-    (personalDetails?.last_name &&
-      personalDetails?.last_name?.toLowerCase()?.includes(searchText)) ||
-    (insuranceDetails?.provider &&
-      insuranceDetails?.provider?.toLowerCase()?.includes(searchText)) ||
-    ongoingTreatment?.some((treatMent: any) =>
-      treatMent?.treatment_name?.toLowerCase()?.includes(searchText)
+    personal_details?.first_name?.toLowerCase()?.includes(searchText) ||
+    personal_details?.last_name?.toLowerCase()?.includes(searchText) ||
+    insurance_details?.provider?.toLowerCase()?.includes(searchText) ||
+    ongoing_treatment?.some((treatment: any) =>
+      treatment?.treatment_name?.toLowerCase()?.includes(searchText)
     ) ||
-    medicalHistory.some((history: any) =>
+    medical_history?.some((history: any) =>
       history?.condition?.toLowerCase()?.includes(searchText)
     ) ||
-    (insuranceDetails?.expiry_date &&
-      new Date(insuranceDetails?.expiry_date)
-        ?.toISOString()
-        ?.toLowerCase()
-        ?.includes(searchText))
+    (insurance_details?.expiry_date &&
+      new Date(insurance_details.expiry_date)
+        .toISOString()
+        .toLowerCase()
+        .includes(searchText))
   );
 }

@@ -31,11 +31,11 @@ export class PatientsListComponent implements OnInit {
 
   onSearch() {
     if (this.searchText) {
-      const term = this.searchText?.toLowerCase();
-      const startTime = performance?.now();
+      let text = this.searchText?.toLowerCase();
+      let startTime = performance?.now();
       while (performance?.now() - startTime < 2000) {
         this.filteredPatientRecords = this.patientRecords?.filter((item: any) =>
-          matchesCriteria(item, term)
+          matchesCriteria(item, text)
         );
       }
     } else {
