@@ -49,10 +49,12 @@ export class PatientsListComponent implements OnInit {
       this.recordFilterWorker = new Worker(
         new URL('../../filter.worker.ts', import.meta?.url)
       );
+      // Handle messages from the web worker
       this.recordFilterWorker.onmessage = ({ data }) => {
         this.filteredPatientRecords = data;
       };
       let text = this.searchText?.toLowerCase();
+      // Send data to the web worker
       this.recordFilterWorker?.postMessage({
         array: this.patientRecords,
         text: text,
